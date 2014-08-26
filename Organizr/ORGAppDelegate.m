@@ -78,7 +78,6 @@
 {
     if (managedDocument.documentState == UIDocumentStateNormal) {
         self.context = managedDocument.managedObjectContext;
-        NSLog(@"%@", self.context);
     }
     else {
         NSLog(@"document not in normal state");

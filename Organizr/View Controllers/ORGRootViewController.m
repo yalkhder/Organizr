@@ -12,27 +12,20 @@
 
 @interface ORGRootViewController ()
 
-@property (strong, nonatomic) NSManagedObjectContext *context;
+@property (strong, nonatomic) ORGAppDelegate *appDelegate;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
 @implementation ORGRootViewController
 
+static NSString *kContextKeyPath = @"context";
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        ORGAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        self.context = appDelegate.context;
-        
-        static NSString *kTaskEntityName = @"Task";
-        static NSString *kReminderDateKeyPath = @"reminderDate";
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:kTaskEntityName];
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kReminderDateKeyPath ascending:YES];
-        fetchRequest.sortDescriptors = @[sortDescriptor];
-        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
-        
+        // Custom Initialization.
     }
     return self;
 }
@@ -41,22 +34,36 @@
 {
     [super viewDidLoad];
     
+    self.appDelegate = [UIApplication sharedApplication].delegate;
+    [self.appDelegate addObserver:self forKeyPath:kContextKeyPath options:0 context:NULL];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    NSError *error;
-    if (![self.fetchedResultsController performFetch:&error]) {
-        NSLog(@"%@",[error localizedDescription]);
-    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqualToString:kContextKeyPath]) {
+        static NSString *kTaskEntityName = @"Task";
+        static NSString *kReminderDateKeyPath = @"reminderDate";
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:kTaskEntityName];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kReminderDateKeyPath ascending:YES];
+        fetchRequest.sortDescriptors = @[sortDescriptor];
+        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.appDelegate.context sectionNameKeyPath:nil cacheName:nil];
+        NSError *error;
+        if (![self.fetchedResultsController performFetch:&error]) {
+            NSLog(@"%@",[error localizedDescription]);
+        }
+    }
 }
 
 #pragma mark - Table view data source
