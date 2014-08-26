@@ -38,6 +38,8 @@
 		C24D2C3D19AC34B500D45972 /* OrganizrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2C3C19AC34B500D45972 /* OrganizrTests.m */; };
 		C24D2C4719AC354300D45972 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D2C4619AC354300D45972 /* CoreData.framework */; };
 		C24D2C4A19AC359400D45972 /* Organizr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C24D2C4819AC359400D45972 /* Organizr.xcdatamodeld */; };
+		C24D2CA519AD01B600D45972 /* _Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CA219AD01B600D45972 /* _Task.m */; };
+		C24D2CA619AD01B600D45972 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CA419AD01B600D45972 /* Task.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,10 @@
 		C24D2C3C19AC34B500D45972 /* OrganizrTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrganizrTests.m; sourceTree = "<group>"; };
 		C24D2C4619AC354300D45972 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C24D2C4919AC359400D45972 /* Organizr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Organizr.xcdatamodel; sourceTree = "<group>"; };
+		C24D2CA119AD01B600D45972 /* _Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Task.h; sourceTree = "<group>"; };
+		C24D2CA219AD01B600D45972 /* _Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Task.m; sourceTree = "<group>"; };
+		C24D2CA319AD01B600D45972 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		C24D2CA419AD01B600D45972 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +140,7 @@
 		C24D2C1419AC34B500D45972 /* Organizr */ = {
 			isa = PBXGroup;
 			children = (
+				C24D2CA019AD01B600D45972 /* Model */,
 				C24D2C4819AC359400D45972 /* Organizr.xcdatamodeld */,
 				C24D2C1D19AC34B500D45972 /* ORGAppDelegate.h */,
 				C24D2C1E19AC34B500D45972 /* ORGAppDelegate.m */,
@@ -174,6 +181,25 @@
 				C24D2C3919AC34B500D45972 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C24D2CA019AD01B600D45972 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C24D2CA719AD01CD00D45972 /* Task */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C24D2CA719AD01CD00D45972 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				C24D2CA119AD01B600D45972 /* _Task.h */,
+				C24D2CA219AD01B600D45972 /* _Task.m */,
+				C24D2CA319AD01B600D45972 /* Task.h */,
+				C24D2CA419AD01B600D45972 /* Task.m */,
+			);
+			name = Task;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,8 +319,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C24D2C2819AC34B500D45972 /* ORGViewController.m in Sources */,
+				C24D2CA519AD01B600D45972 /* _Task.m in Sources */,
 				C24D2C4A19AC359400D45972 /* Organizr.xcdatamodeld in Sources */,
 				C24D2C1B19AC34B500D45972 /* main.m in Sources */,
+				C24D2CA619AD01B600D45972 /* Task.m in Sources */,
 				C24D2C1F19AC34B500D45972 /* ORGAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
