@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Mogenerator.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>Organizr.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,11 @@
 			<true/>
 		</dict>
 		<key>C24D2C2E19AC34B500D45972</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C24D2C9B19AC5EF300D45972</key>
 		<dict>
 			<key>primary</key>
 			<true/>
