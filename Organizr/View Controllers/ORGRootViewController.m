@@ -9,6 +9,8 @@
 #import "ORGRootViewController.h"
 #import "ORGAppDelegate.h"
 #import "Task.h"
+#import "ORGTaskTableViewCell.h"
+#import "ORGNewTaskTableViewCell.h"
 
 @interface ORGRootViewController ()
 
@@ -70,36 +72,43 @@ static NSString *kContextKeyPath = @"context";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultsController sections] count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return [[[self.fetchedResultsController sections] objectAtIndex:section] count];
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] count] + 1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *kTaskCellReuseIdentifier = @"Task Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTaskCellReuseIdentifier forIndexPath:indexPath];
-    Task *task = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = task.title;
-    return cell;
+    if (indexPath.row != [self tableView:self.tableView numberOfRowsInSection:indexPath.section] - 1) {
+        static NSString *kTaskCellReuseIdentifier = @"Task Cell";
+        ORGNewTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTaskCellReuseIdentifier forIndexPath:indexPath];
+        Task *task = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        cell.textField.text = task.title;
+        return cell;
+    }
+    else {
+        static NSString *kNewTaskCellReuseIdentifier = @"New Task Cell";
+        ORGNewTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNewTaskCellReuseIdentifier];
+        return cell;
+    }
+    
 }
 
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -110,7 +119,7 @@ static NSString *kContextKeyPath = @"context";
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -127,6 +136,18 @@ static NSString *kContextKeyPath = @"context";
     return YES;
 }
 */
+
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    NSLog(@"Row selected");
+}
+
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"will start editing");
+}
 
 /*
 #pragma mark - Navigation

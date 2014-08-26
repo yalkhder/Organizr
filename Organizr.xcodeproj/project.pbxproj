@@ -40,6 +40,8 @@
 		C24D2CA519AD01B600D45972 /* _Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CA219AD01B600D45972 /* _Task.m */; };
 		C24D2CA619AD01B600D45972 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CA419AD01B600D45972 /* Task.m */; };
 		C24D2CAA19AD04A500D45972 /* ORGRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CA919AD04A500D45972 /* ORGRootViewController.m */; };
+		C24D2CB119AD470A00D45972 /* ORGTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CB019AD470A00D45972 /* ORGTaskTableViewCell.m */; };
+		C24D2CB519AD48B900D45972 /* ORGNewTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CB419AD48B900D45972 /* ORGNewTaskTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,10 @@
 		C24D2CA419AD01B600D45972 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		C24D2CA819AD04A500D45972 /* ORGRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORGRootViewController.h; path = "View Controllers/ORGRootViewController.h"; sourceTree = "<group>"; };
 		C24D2CA919AD04A500D45972 /* ORGRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORGRootViewController.m; path = "View Controllers/ORGRootViewController.m"; sourceTree = "<group>"; };
+		C24D2CAF19AD470A00D45972 /* ORGTaskTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORGTaskTableViewCell.h; path = "Table View Cells/ORGTaskTableViewCell.h"; sourceTree = "<group>"; };
+		C24D2CB019AD470A00D45972 /* ORGTaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORGTaskTableViewCell.m; path = "Table View Cells/ORGTaskTableViewCell.m"; sourceTree = "<group>"; };
+		C24D2CB319AD48B900D45972 /* ORGNewTaskTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORGNewTaskTableViewCell.h; path = "Table View Cells/ORGNewTaskTableViewCell.h"; sourceTree = "<group>"; };
+		C24D2CB419AD48B900D45972 /* ORGNewTaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORGNewTaskTableViewCell.m; path = "Table View Cells/ORGNewTaskTableViewCell.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +148,7 @@
 			children = (
 				C24D2CA019AD01B600D45972 /* Model */,
 				C24D2CAB19AD04B300D45972 /* View Controllers */,
+				C24D2CB219AD471500D45972 /* Table View Cells */,
 				C24D2C4819AC359400D45972 /* Organizr.xcdatamodeld */,
 				C24D2C1D19AC34B500D45972 /* ORGAppDelegate.h */,
 				C24D2C1E19AC34B500D45972 /* ORGAppDelegate.m */,
@@ -208,6 +215,17 @@
 				C24D2CA919AD04A500D45972 /* ORGRootViewController.m */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		C24D2CB219AD471500D45972 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C24D2CAF19AD470A00D45972 /* ORGTaskTableViewCell.h */,
+				C24D2CB019AD470A00D45972 /* ORGTaskTableViewCell.m */,
+				C24D2CB319AD48B900D45972 /* ORGNewTaskTableViewCell.h */,
+				C24D2CB419AD48B900D45972 /* ORGNewTaskTableViewCell.m */,
+			);
+			name = "Table View Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,9 +344,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C24D2CB119AD470A00D45972 /* ORGTaskTableViewCell.m in Sources */,
 				C24D2CA519AD01B600D45972 /* _Task.m in Sources */,
 				C24D2CAA19AD04A500D45972 /* ORGRootViewController.m in Sources */,
 				C24D2C4A19AC359400D45972 /* Organizr.xcdatamodeld in Sources */,
+				C24D2CB519AD48B900D45972 /* ORGNewTaskTableViewCell.m in Sources */,
 				C24D2C1B19AC34B500D45972 /* main.m in Sources */,
 				C24D2CA619AD01B600D45972 /* Task.m in Sources */,
 				C24D2C1F19AC34B500D45972 /* ORGAppDelegate.m in Sources */,
