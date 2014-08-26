@@ -22,6 +22,8 @@
 		C24D2C3319AC34B500D45972 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D2C1219AC34B500D45972 /* UIKit.framework */; };
 		C24D2C3B19AC34B500D45972 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C24D2C3919AC34B500D45972 /* InfoPlist.strings */; };
 		C24D2C3D19AC34B500D45972 /* OrganizrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2C3C19AC34B500D45972 /* OrganizrTests.m */; };
+		C24D2C4719AC354300D45972 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D2C4619AC354300D45972 /* CoreData.framework */; };
+		C24D2C4A19AC359400D45972 /* Organizr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C24D2C4819AC359400D45972 /* Organizr.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		C24D2C3819AC34B500D45972 /* OrganizrTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OrganizrTests-Info.plist"; sourceTree = "<group>"; };
 		C24D2C3A19AC34B500D45972 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C24D2C3C19AC34B500D45972 /* OrganizrTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrganizrTests.m; sourceTree = "<group>"; };
+		C24D2C4619AC354300D45972 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C24D2C4919AC359400D45972 /* Organizr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Organizr.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C24D2C4719AC354300D45972 /* CoreData.framework in Frameworks */,
 				C24D2C1119AC34B500D45972 /* CoreGraphics.framework in Frameworks */,
 				C24D2C1319AC34B500D45972 /* UIKit.framework in Frameworks */,
 				C24D2C0F19AC34B500D45972 /* Foundation.framework in Frameworks */,
@@ -103,6 +108,7 @@
 		C24D2C0D19AC34B500D45972 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C24D2C4619AC354300D45972 /* CoreData.framework */,
 				C24D2C0E19AC34B500D45972 /* Foundation.framework */,
 				C24D2C1019AC34B500D45972 /* CoreGraphics.framework */,
 				C24D2C1219AC34B500D45972 /* UIKit.framework */,
@@ -114,6 +120,7 @@
 		C24D2C1419AC34B500D45972 /* Organizr */ = {
 			isa = PBXGroup;
 			children = (
+				C24D2C4819AC359400D45972 /* Organizr.xcdatamodeld */,
 				C24D2C1D19AC34B500D45972 /* ORGAppDelegate.h */,
 				C24D2C1E19AC34B500D45972 /* ORGAppDelegate.m */,
 				C24D2C2019AC34B500D45972 /* Main_iPhone.storyboard */,
@@ -255,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C24D2C2819AC34B500D45972 /* ORGViewController.m in Sources */,
+				C24D2C4A19AC359400D45972 /* Organizr.xcdatamodeld in Sources */,
 				C24D2C1B19AC34B500D45972 /* main.m in Sources */,
 				C24D2C1F19AC34B500D45972 /* ORGAppDelegate.m in Sources */,
 			);
@@ -481,6 +489,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C24D2C4819AC359400D45972 /* Organizr.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C24D2C4919AC359400D45972 /* Organizr.xcdatamodel */,
+			);
+			currentVersion = C24D2C4919AC359400D45972 /* Organizr.xcdatamodel */;
+			path = Organizr.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C24D2C0319AC34B500D45972 /* Project object */;
 }

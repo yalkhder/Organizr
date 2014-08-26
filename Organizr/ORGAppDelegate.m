@@ -8,11 +8,42 @@
 
 #import "ORGAppDelegate.h"
 
+@interface ORGAppDelegate ()
+
+@property (strong, nonatomic, readwrite) NSManagedObjectContext *context;
+
+@end
+
 @implementation ORGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *documentsDirectory = [[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject];
+    
+    NSString *managedDocumentName = @"OrganizrDB";
+    NSURL *managedDocumentURL = [documentsDirectory URLByAppendingPathComponent:managedDocumentName];
+    UIManagedDocument *managedDocument = [[UIManagedDocument alloc] initWithFileURL:managedDocumentURL];
+    if ([fileManager fileExistsAtPath:[managedDocumentURL path]]) {
+        [managedDocument openWithCompletionHandler:^(BOOL success) {
+            if (success) {
+                [self documentIsReady:managedDocument];
+            }
+            else {
+                NSLog(@"error opening DB");
+            }
+        }];
+    }
+    else {
+        [managedDocument saveToURL:managedDocumentURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+            if (success) {
+                [self documentIsReady:managedDocument];
+            }
+            else {
+                NSLog(@"error creating DB");
+            }
+        }];
+    }
     return YES;
 }
 							
@@ -41,6 +72,17 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)documentIsReady:(UIManagedDocument *)managedDocument
+{
+    if (managedDocument.documentState == UIDocumentStateNormal) {
+        self.context = managedDocument.managedObjectContext;
+        NSLog(@"%@", self.context);
+    }
+    else {
+        NSLog(@"document not in normal state");
+    }
 }
 
 @end
