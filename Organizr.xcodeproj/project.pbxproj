@@ -29,7 +29,6 @@
 		C24D2C1F19AC34B500D45972 /* ORGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2C1E19AC34B500D45972 /* ORGAppDelegate.m */; };
 		C24D2C2219AC34B500D45972 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C24D2C2019AC34B500D45972 /* Main_iPhone.storyboard */; };
 		C24D2C2519AC34B500D45972 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C24D2C2319AC34B500D45972 /* Main_iPad.storyboard */; };
-		C24D2C2819AC34B500D45972 /* ORGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2C2719AC34B500D45972 /* ORGViewController.m */; };
 		C24D2C2A19AC34B500D45972 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C24D2C2919AC34B500D45972 /* Images.xcassets */; };
 		C24D2C3119AC34B500D45972 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D2C3019AC34B500D45972 /* XCTest.framework */; };
 		C24D2C3219AC34B500D45972 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24D2C0E19AC34B500D45972 /* Foundation.framework */; };
@@ -40,6 +39,7 @@
 		C24D2C4A19AC359400D45972 /* Organizr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C24D2C4819AC359400D45972 /* Organizr.xcdatamodeld */; };
 		C24D2CA519AD01B600D45972 /* _Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CA219AD01B600D45972 /* _Task.m */; };
 		C24D2CA619AD01B600D45972 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CA419AD01B600D45972 /* Task.m */; };
+		C24D2CAA19AD04A500D45972 /* ORGRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CA919AD04A500D45972 /* ORGRootViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,8 +65,6 @@
 		C24D2C1E19AC34B500D45972 /* ORGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ORGAppDelegate.m; sourceTree = "<group>"; };
 		C24D2C2119AC34B500D45972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		C24D2C2419AC34B500D45972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		C24D2C2619AC34B500D45972 /* ORGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ORGViewController.h; sourceTree = "<group>"; };
-		C24D2C2719AC34B500D45972 /* ORGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ORGViewController.m; sourceTree = "<group>"; };
 		C24D2C2919AC34B500D45972 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C24D2C2F19AC34B500D45972 /* OrganizrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrganizrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C24D2C3019AC34B500D45972 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -79,6 +77,8 @@
 		C24D2CA219AD01B600D45972 /* _Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Task.m; sourceTree = "<group>"; };
 		C24D2CA319AD01B600D45972 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		C24D2CA419AD01B600D45972 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		C24D2CA819AD04A500D45972 /* ORGRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORGRootViewController.h; path = "View Controllers/ORGRootViewController.h"; sourceTree = "<group>"; };
+		C24D2CA919AD04A500D45972 /* ORGRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORGRootViewController.m; path = "View Controllers/ORGRootViewController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,13 +141,12 @@
 			isa = PBXGroup;
 			children = (
 				C24D2CA019AD01B600D45972 /* Model */,
+				C24D2CAB19AD04B300D45972 /* View Controllers */,
 				C24D2C4819AC359400D45972 /* Organizr.xcdatamodeld */,
 				C24D2C1D19AC34B500D45972 /* ORGAppDelegate.h */,
 				C24D2C1E19AC34B500D45972 /* ORGAppDelegate.m */,
 				C24D2C2019AC34B500D45972 /* Main_iPhone.storyboard */,
 				C24D2C2319AC34B500D45972 /* Main_iPad.storyboard */,
-				C24D2C2619AC34B500D45972 /* ORGViewController.h */,
-				C24D2C2719AC34B500D45972 /* ORGViewController.m */,
 				C24D2C2919AC34B500D45972 /* Images.xcassets */,
 				C24D2C1519AC34B500D45972 /* Supporting Files */,
 			);
@@ -200,6 +199,15 @@
 				C24D2CA419AD01B600D45972 /* Task.m */,
 			);
 			name = Task;
+			sourceTree = "<group>";
+		};
+		C24D2CAB19AD04B300D45972 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C24D2CA819AD04A500D45972 /* ORGRootViewController.h */,
+				C24D2CA919AD04A500D45972 /* ORGRootViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,8 +326,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C24D2C2819AC34B500D45972 /* ORGViewController.m in Sources */,
 				C24D2CA519AD01B600D45972 /* _Task.m in Sources */,
+				C24D2CAA19AD04A500D45972 /* ORGRootViewController.m in Sources */,
 				C24D2C4A19AC359400D45972 /* Organizr.xcdatamodeld in Sources */,
 				C24D2C1B19AC34B500D45972 /* main.m in Sources */,
 				C24D2CA619AD01B600D45972 /* Task.m in Sources */,
