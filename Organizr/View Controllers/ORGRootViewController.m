@@ -150,8 +150,8 @@ static NSString *kContextKeyPath = @"context";
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    NSLog(@"Row selected");
+    ORGNewTaskTableViewCell *cell = (ORGNewTaskTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    [cell.textField becomeFirstResponder];
 }
 
 - (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
