@@ -68,22 +68,32 @@ static NSString *kContextKeyPath = @"context";
     }
 }
 
+- (BOOL)rowAtIndexPathIsLastRow:(NSIndexPath *)indexPath
+{
+    return indexPath.row == [self tableView:self.tableView numberOfRowsInSection:indexPath.section] - 1;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return MAX(1, [[self.fetchedResultsController sections] count]);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[self.fetchedResultsController sections] objectAtIndex:section] count] + 1;
+    NSInteger numberOfRows = 0;
+    if ([[self.fetchedResultsController sections] count] > 0) {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+        numberOfRows = [sectionInfo numberOfObjects];
+    }
+    return numberOfRows + 1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row != [self tableView:self.tableView numberOfRowsInSection:indexPath.section] - 1) {
+    if (![self rowAtIndexPathIsLastRow:indexPath]) {
         static NSString *kTaskCellReuseIdentifier = @"Task Cell";
         ORGNewTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTaskCellReuseIdentifier forIndexPath:indexPath];
         Task *task = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -104,7 +114,7 @@ static NSString *kContextKeyPath = @"context";
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return ![self rowAtIndexPathIsLastRow:indexPath];
 }
 
 
