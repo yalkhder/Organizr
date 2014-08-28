@@ -1,5 +1,7 @@
 #import "_Task.h"
 
 @interface Task : _Task {}
-// Custom logic goes here.
+
++ (instancetype)insertTaskWithTitle:(NSString *)title reminderDate:(NSDate *)reminderDate additionalNotes:(NSString *)additionalNotes parent:(Task *)parent inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+
 @end

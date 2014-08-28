@@ -37,7 +37,6 @@ static NSString *kContextKeyPath = @"context";
     [super viewDidLoad];
     
     self.appDelegate = [UIApplication sharedApplication].delegate;
-    [self.appDelegate addObserver:self forKeyPath:kContextKeyPath options:0 context:NULL];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -50,22 +49,6 @@ static NSString *kContextKeyPath = @"context";
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if([keyPath isEqualToString:kContextKeyPath]) {
-        static NSString *kTaskEntityName = @"Task";
-        static NSString *kReminderDateKeyPath = @"reminderDate";
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:kTaskEntityName];
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kReminderDateKeyPath ascending:YES];
-        fetchRequest.sortDescriptors = @[sortDescriptor];
-        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.appDelegate.context sectionNameKeyPath:nil cacheName:nil];
-        NSError *error;
-        if (![self.fetchedResultsController performFetch:&error]) {
-            NSLog(@"%@",[error localizedDescription]);
-        }
-    }
 }
 
 - (BOOL)rowAtIndexPathIsLastRow:(NSIndexPath *)indexPath

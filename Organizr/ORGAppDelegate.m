@@ -7,10 +7,14 @@
 //
 
 #import "ORGAppDelegate.h"
+#import "ORGPersistentStack.h"
+#import "ORGStore.h"
+#import "ORGRootViewController.h"
 
 @interface ORGAppDelegate ()
 
-@property (strong, nonatomic, readwrite) NSManagedObjectContext *context;
+@property (strong, nonatomic) ORGPersistentStack *persistentStack;
+@property (strong, nonatomic) ORGStore *store;
 
 @end
 
@@ -18,33 +22,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *documentsDirectory = [[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject];
-    
-    NSString *managedDocumentName = @"OrganizrDB";
-    NSURL *managedDocumentURL = [documentsDirectory URLByAppendingPathComponent:managedDocumentName];
-    UIManagedDocument *managedDocument = [[UIManagedDocument alloc] initWithFileURL:managedDocumentURL];
-    if ([fileManager fileExistsAtPath:[managedDocumentURL path]]) {
-        [managedDocument openWithCompletionHandler:^(BOOL success) {
-            if (success) {
-                [self documentIsReady:managedDocument];
-            }
-            else {
-                NSLog(@"error opening DB");
-            }
-        }];
-    }
-    else {
-        [managedDocument saveToURL:managedDocumentURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
-            if (success) {
-                [self documentIsReady:managedDocument];
-            }
-            else {
-                NSLog(@"error creating DB");
-            }
-        }];
-    }
+    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+    ORGRootViewController *rootViewController = (ORGRootViewController *)navigationController.topViewController;
+    self.persistentStack = [[ORGPersistentStack alloc] initWithStoreURL:self.storeURL modelURL:self.modelURL];
+    self.store = [[ORGStore alloc] init];
+    self.store.managedObjectContext = self.persistentStack.managedObjectContext;
+    rootViewController.parent = self.store.rootTask;
     return YES;
+}
+
+- (NSURL *)storeURL
+{
+    NSURL* documentsDirectory = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
+    return [documentsDirectory URLByAppendingPathComponent:@"db.sqlite"];
+}
+
+- (NSURL *)modelURL
+{
+    return [[NSBundle mainBundle] URLForResource:@"Organizr" withExtension:@"momd"];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -55,8 +50,10 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    NSError *error;
+    if ([self.store.managedObjectContext save:NULL]) {
+        NSLog(@"%@", [error localizedDescription]);
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -72,16 +69,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-- (void)documentIsReady:(UIManagedDocument *)managedDocument
-{
-    if (managedDocument.documentState == UIDocumentStateNormal) {
-        self.context = managedDocument.managedObjectContext;
-    }
-    else {
-        NSLog(@"document not in normal state");
-    }
 }
 
 @end

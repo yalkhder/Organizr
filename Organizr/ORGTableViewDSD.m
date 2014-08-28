@@ -27,23 +27,9 @@ static NSString *kContextKeyPath = @"context";
     if (self) {
         self.cellIdentifier = cellIdentifier;
         self.configureBlock = configureBlock;
-        ORGAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:appDelegate.context sectionNameKeyPath:nil cacheName:nil];
-        if (appDelegate.context) {
-            [self loadTable];
-        }
-        else {
-            [self addObserver:appDelegate forKeyPath:kContextKeyPath options:0 context:NULL];
-        }
+        //TODO: set self.fetchedResultsController
     }
     return self;
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:kContextKeyPath]) {
-        [self loadTable];
-    }
 }
 
 - (void)loadTable
@@ -58,7 +44,6 @@ static NSString *kContextKeyPath = @"context";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //TODO: Figure out how to delay this until after context is set
     return [[self.fetchedResultsController sections] count];
 }
 

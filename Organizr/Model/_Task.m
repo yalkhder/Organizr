@@ -10,6 +10,8 @@ const struct TaskAttributes TaskAttributes = {
 };
 
 const struct TaskRelationships TaskRelationships = {
+	.children = @"children",
+	.parent = @"parent",
 };
 
 const struct TaskFetchedProperties TaskFetchedProperties = {
@@ -68,6 +70,23 @@ const struct TaskFetchedProperties TaskFetchedProperties = {
 
 
 
+
+@dynamic children;
+
+	
+- (NSMutableSet*)childrenSet {
+	[self willAccessValueForKey:@"children"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"children"];
+  
+	[self didAccessValueForKey:@"children"];
+	return result;
+}
+	
+
+@dynamic parent;
+
+	
 
 
 

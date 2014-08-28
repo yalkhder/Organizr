@@ -6,8 +6,12 @@
 //  Copyright (c) 2014 Yasser Al-Khder. All rights reserved.
 //
 
+@class Task;
+
 #import <UIKit/UIKit.h>
 
 @interface ORGRootViewController : UITableViewController
+
+@property (strong, nonatomic) Task *parent;
 
 @end

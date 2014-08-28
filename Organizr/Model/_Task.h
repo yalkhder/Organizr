@@ -11,11 +11,15 @@ extern const struct TaskAttributes {
 } TaskAttributes;
 
 extern const struct TaskRelationships {
+	__unsafe_unretained NSString *children;
+	__unsafe_unretained NSString *parent;
 } TaskRelationships;
 
 extern const struct TaskFetchedProperties {
 } TaskFetchedProperties;
 
+@class Task;
+@class Task;
 
 
 
@@ -64,10 +68,29 @@ extern const struct TaskFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *children;
+
+- (NSMutableSet*)childrenSet;
+
+
+
+
+@property (nonatomic, strong) Task *parent;
+
+//- (BOOL)validateParent:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @end
 
 @interface _Task (CoreDataGeneratedAccessors)
+
+- (void)addChildren:(NSSet*)value_;
+- (void)removeChildren:(NSSet*)value_;
+- (void)addChildrenObject:(Task*)value_;
+- (void)removeChildrenObject:(Task*)value_;
 
 @end
 
@@ -90,6 +113,16 @@ extern const struct TaskFetchedProperties {
 - (void)setPrimitiveTitle:(NSString*)value;
 
 
+
+
+
+- (NSMutableSet*)primitiveChildren;
+- (void)setPrimitiveChildren:(NSMutableSet*)value;
+
+
+
+- (Task*)primitiveParent;
+- (void)setPrimitiveParent:(Task*)value;
 
 
 @end

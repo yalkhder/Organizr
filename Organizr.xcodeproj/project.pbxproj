@@ -43,6 +43,8 @@
 		C24D2CB119AD470A00D45972 /* ORGTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CB019AD470A00D45972 /* ORGTaskTableViewCell.m */; };
 		C24D2CB519AD48B900D45972 /* ORGNewTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CB419AD48B900D45972 /* ORGNewTaskTableViewCell.m */; };
 		C253278519AECD0400B3AE75 /* ORGTableViewDSD.m in Sources */ = {isa = PBXBuildFile; fileRef = C253278419AECD0400B3AE75 /* ORGTableViewDSD.m */; };
+		C287D59919AEFA970026C91A /* ORGPersistentStack.m in Sources */ = {isa = PBXBuildFile; fileRef = C287D59819AEFA970026C91A /* ORGPersistentStack.m */; };
+		C287D59C19AEFDDD0026C91A /* ORGStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C287D59B19AEFDDD0026C91A /* ORGStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,10 @@
 		C24D2CB419AD48B900D45972 /* ORGNewTaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORGNewTaskTableViewCell.m; path = "Table View Cells/ORGNewTaskTableViewCell.m"; sourceTree = "<group>"; };
 		C253278319AECD0400B3AE75 /* ORGTableViewDSD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORGTableViewDSD.h; sourceTree = "<group>"; };
 		C253278419AECD0400B3AE75 /* ORGTableViewDSD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORGTableViewDSD.m; sourceTree = "<group>"; };
+		C287D59719AEFA970026C91A /* ORGPersistentStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORGPersistentStack.h; sourceTree = "<group>"; };
+		C287D59819AEFA970026C91A /* ORGPersistentStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORGPersistentStack.m; sourceTree = "<group>"; };
+		C287D59A19AEFDDD0026C91A /* ORGStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORGStore.h; sourceTree = "<group>"; };
+		C287D59B19AEFDDD0026C91A /* ORGStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORGStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +161,10 @@
 				C24D2C4819AC359400D45972 /* Organizr.xcdatamodeld */,
 				C24D2C1D19AC34B500D45972 /* ORGAppDelegate.h */,
 				C24D2C1E19AC34B500D45972 /* ORGAppDelegate.m */,
+				C287D59719AEFA970026C91A /* ORGPersistentStack.h */,
+				C287D59819AEFA970026C91A /* ORGPersistentStack.m */,
+				C287D59A19AEFDDD0026C91A /* ORGStore.h */,
+				C287D59B19AEFDDD0026C91A /* ORGStore.m */,
 				C253278319AECD0400B3AE75 /* ORGTableViewDSD.h */,
 				C253278419AECD0400B3AE75 /* ORGTableViewDSD.m */,
 				C24D2C2019AC34B500D45972 /* Main_iPhone.storyboard */,
@@ -351,8 +361,10 @@
 			files = (
 				C24D2CB119AD470A00D45972 /* ORGTaskTableViewCell.m in Sources */,
 				C24D2CA519AD01B600D45972 /* _Task.m in Sources */,
+				C287D59919AEFA970026C91A /* ORGPersistentStack.m in Sources */,
 				C24D2CAA19AD04A500D45972 /* ORGRootViewController.m in Sources */,
 				C24D2C4A19AC359400D45972 /* Organizr.xcdatamodeld in Sources */,
+				C287D59C19AEFDDD0026C91A /* ORGStore.m in Sources */,
 				C24D2CB519AD48B900D45972 /* ORGNewTaskTableViewCell.m in Sources */,
 				C253278519AECD0400B3AE75 /* ORGTableViewDSD.m in Sources */,
 				C24D2C1B19AC34B500D45972 /* main.m in Sources */,
