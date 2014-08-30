@@ -59,11 +59,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)rowAtIndexPathIsLastRow:(NSIndexPath *)indexPath
-{
-    return indexPath.row == [self tableView:self.tableView numberOfRowsInSection:indexPath.section] - 1;
-}
-
 - (void)setupFetchedResultsController
 {
     self.dataSource = [[ORGTableViewDataSource alloc] initWithTableView:self.tableView];
