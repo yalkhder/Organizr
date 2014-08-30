@@ -291,6 +291,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Yasser Al-Khder";
 				TargetAttributes = {
+					C24D2C0A19AC34B500D45972 = {
+						DevelopmentTeam = R24SKJDVPS;
+					};
 					C24D2C2E19AC34B500D45972 = {
 						TestTargetID = C24D2C0A19AC34B500D45972;
 					};
@@ -504,10 +507,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Organizr/Organizr-Prefix.pch";
 				INFOPLIST_FILE = "Organizr/Organizr-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7e05d167-6872-49cf-aaa6-99ab4c66722c";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -517,10 +522,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Organizr/Organizr-Prefix.pch";
 				INFOPLIST_FILE = "Organizr/Organizr-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7e05d167-6872-49cf-aaa6-99ab4c66722c";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
