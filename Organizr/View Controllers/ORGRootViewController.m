@@ -7,21 +7,18 @@
 //
 
 #import "ORGRootViewController.h"
-#import "ORGAppDelegate.h"
 #import "Task.h"
+#import "ORGTableViewDataSource.h"
 #import "ORGTaskTableViewCell.h"
 #import "ORGNewTaskTableViewCell.h"
 
-@interface ORGRootViewController ()
+@interface ORGRootViewController () <ORGTableViewDataSourceDelegate>
 
-@property (strong, nonatomic) ORGAppDelegate *appDelegate;
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) ORGTableViewDataSource *dataSource;
 
 @end
 
 @implementation ORGRootViewController
-
-static NSString *kContextKeyPath = @"context";
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -35,14 +32,25 @@ static NSString *kContextKeyPath = @"context";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.appDelegate = [UIApplication sharedApplication].delegate;
+    [self setupFetchedResultsController];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //TODO: Resume fetchedResultsController
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    //TODO: Pause fetchedResultsController
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,79 +64,14 @@ static NSString *kContextKeyPath = @"context";
     return indexPath.row == [self tableView:self.tableView numberOfRowsInSection:indexPath.section] - 1;
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (void)setupFetchedResultsController
 {
-    return MAX(1, [[self.fetchedResultsController sections] count]);
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSInteger numberOfRows = 0;
-    if ([[self.fetchedResultsController sections] count] > 0) {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-        numberOfRows = [sectionInfo numberOfObjects];
-    }
-    return numberOfRows + 1;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (![self rowAtIndexPathIsLastRow:indexPath]) {
-        static NSString *kTaskCellReuseIdentifier = @"Task Cell";
-        ORGNewTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTaskCellReuseIdentifier forIndexPath:indexPath];
-        Task *task = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        cell.textField.text = task.title;
-        return cell;
-    }
-    else {
-        static NSString *kNewTaskCellReuseIdentifier = @"New Task Cell";
-        ORGNewTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNewTaskCellReuseIdentifier];
-        return cell;
-    }
+    self.dataSource = [[ORGTableViewDataSource alloc] initWithTableView:self.tableView];
+    self.dataSource.fetchedResultsController = self.parent.childrenFetchedResultsController;
+    self.dataSource.cellIdentifier = @"Task Cell";
+    self.dataSource.delegate = self;
     
 }
-
-
-
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return ![self rowAtIndexPathIsLastRow:indexPath];
-}
-
-
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -140,6 +83,14 @@ static NSString *kContextKeyPath = @"context";
 - (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"will start editing");
+}
+
+#pragma mark - Table view data source delegate
+- (void)configureCell:(id)cell withObject:(id)object
+{
+    ORGTaskTableViewCell *taskCell = cell;
+    Task *task = object;
+    taskCell.textField.text = task.title;
 }
 
 /*

@@ -20,4 +20,13 @@
     return task;
 }
 
+- (NSFetchedResultsController *)childrenFetchedResultsController
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:self.entity.name];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"reminderDate" ascending:YES];
+    fetchRequest.sortDescriptors = @[sortDescriptor];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"parent = %@", self];
+    return [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+}
+
 @end
