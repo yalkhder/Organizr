@@ -11,6 +11,7 @@
 #import "ORGTableViewDataSource.h"
 #import "ORGTaskTableViewCell.h"
 #import "ORGNewTaskTableViewCell.h"
+#import "ORGNewTaskTableViewController.h"
 
 @interface ORGRootViewController () <ORGTableViewDataSourceDelegate>
 
@@ -44,13 +45,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //TODO: Resume fetchedResultsController
+    [self.tableView reloadData];
+    self.dataSource.paused = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    //TODO: Pause fetchedResultsController
+    self.dataSource.paused = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,7 +72,10 @@
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
-    
+    if ([segue.identifier isEqualToString:@"Add New Task"]) {
+        ORGNewTaskTableViewController *sourceViewController = [segue sourceViewController];
+        [Task insertTaskWithTitle:sourceViewController.titleTextField.text reminderDate:nil additionalNotes:nil parent:self.parent inManagedObjectContext:self.parent.managedObjectContext];
+    }
 }
 
 #pragma mark - Table view delegate

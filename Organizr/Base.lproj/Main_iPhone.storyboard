@@ -175,11 +175,19 @@
                     <navigationItem key="navigationItem" title="New Task" id="aLf-Ao-98S">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="VUd-v2-VrL">
                             <connections>
-                                <segue destination="FEL-v3-WvL" kind="unwind" unwindAction="unwindToList:" id="BBf-aE-kw3"/>
+                                <segue destination="FEL-v3-WvL" kind="unwind" identifier="Cancel New Task" unwindAction="unwindToList:" id="Ip8-YZ-Jzn"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="bNI-5E-pL7"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="bNI-5E-pL7">
+                            <connections>
+                                <segue destination="FEL-v3-WvL" kind="unwind" identifier="Add New Task" unwindAction="unwindToList:" id="gK5-gE-bHl"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="doneBarButtonItem" destination="bNI-5E-pL7" id="k43-nV-FeY"/>
+                        <outlet property="titleTextField" destination="CMI-ZX-ZHa" id="XR5-g1-Mbv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5eI-gA-bJF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="FEL-v3-WvL" userLabel="Exit" sceneMemberID="exit"/>

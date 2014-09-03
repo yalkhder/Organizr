@@ -9,13 +9,11 @@
 #import "ORGStore.h"
 #import "Task.h"
 
-static NSString *kTaskIdentityName = @"Task";
-
 @implementation ORGStore
 
 - (Task *)rootTask
 {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:kTaskIdentityName];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"parent = %@", nil];
     NSError *error;
     NSArray *tasks = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];

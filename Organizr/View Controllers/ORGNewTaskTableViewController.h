@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Task;
+
 @interface ORGNewTaskTableViewController : UITableViewController
+
+@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 
 @end

@@ -7,8 +7,11 @@
 //
 
 #import "ORGNewTaskTableViewController.h"
+#import "Task.h"
 
-@interface ORGNewTaskTableViewController ()
+@interface ORGNewTaskTableViewController () <UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButtonItem;
 
 @end
 
@@ -27,6 +30,9 @@
 {
     [super viewDidLoad];
     
+    self.doneBarButtonItem.enabled = self.titleTextField.text.length > 0;
+    self.titleTextField.delegate = self;
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -40,7 +46,24 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - Text field delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (textField == self.titleTextField) {
+        BOOL textFieldWillHaveText = ![string isEqualToString:@""] || textField.text.length > 1;
+        self.doneBarButtonItem.enabled = textFieldWillHaveText;
+    }
+    return YES;
+}
+
+//#pragma mark - Table view data source
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 //{

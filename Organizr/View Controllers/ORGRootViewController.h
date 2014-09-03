@@ -14,6 +14,4 @@
 
 @property (strong, nonatomic) Task *parent;
 
-- (IBAction)unwindToList:(UIStoryboardSegue *)segue;
-
 @end

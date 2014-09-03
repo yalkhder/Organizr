@@ -14,11 +14,12 @@
 
 @end
 
-@interface ORGTableViewDataSource : NSObject <UITableViewDataSource>
+@interface ORGTableViewDataSource : NSObject <UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property (copy, nonatomic) NSString *cellIdentifier;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (weak, nonatomic) id<ORGTableViewDataSourceDelegate> delegate;
+@property (nonatomic) BOOL paused;
 
 - (instancetype)initWithTableView:(UITableView *)tableView;
 

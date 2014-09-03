@@ -51,8 +51,8 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     NSError *error;
-    if ([self.store.managedObjectContext save:NULL]) {
-        NSLog(@"%@", [error localizedDescription]);
+    if (![self.store.managedObjectContext save:&error]) {
+        NSLog(@"%@", error);
     }
 }
 
