@@ -43,6 +43,7 @@
 		C24D2CB119AD470A00D45972 /* ORGTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CB019AD470A00D45972 /* ORGTaskTableViewCell.m */; };
 		C24D2CB519AD48B900D45972 /* ORGNewTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CB419AD48B900D45972 /* ORGNewTaskTableViewCell.m */; };
 		C253278519AECD0400B3AE75 /* ORGTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C253278419AECD0400B3AE75 /* ORGTableViewDataSource.m */; };
+		C268373419B40AE1005AB618 /* ORGNewTaskTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C268373319B40AE1005AB618 /* ORGNewTaskTableViewController.m */; };
 		C287D59919AEFA970026C91A /* ORGPersistentStack.m in Sources */ = {isa = PBXBuildFile; fileRef = C287D59819AEFA970026C91A /* ORGPersistentStack.m */; };
 		C287D59C19AEFDDD0026C91A /* ORGStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C287D59B19AEFDDD0026C91A /* ORGStore.m */; };
 /* End PBXBuildFile section */
@@ -90,6 +91,8 @@
 		C24D2CB419AD48B900D45972 /* ORGNewTaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORGNewTaskTableViewCell.m; path = "Table View Cells/ORGNewTaskTableViewCell.m"; sourceTree = "<group>"; };
 		C253278319AECD0400B3AE75 /* ORGTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORGTableViewDataSource.h; sourceTree = "<group>"; };
 		C253278419AECD0400B3AE75 /* ORGTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORGTableViewDataSource.m; sourceTree = "<group>"; };
+		C268373219B40AE1005AB618 /* ORGNewTaskTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORGNewTaskTableViewController.h; path = "View Controllers/ORGNewTaskTableViewController.h"; sourceTree = "<group>"; };
+		C268373319B40AE1005AB618 /* ORGNewTaskTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORGNewTaskTableViewController.m; path = "View Controllers/ORGNewTaskTableViewController.m"; sourceTree = "<group>"; };
 		C287D59719AEFA970026C91A /* ORGPersistentStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORGPersistentStack.h; sourceTree = "<group>"; };
 		C287D59819AEFA970026C91A /* ORGPersistentStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORGPersistentStack.m; sourceTree = "<group>"; };
 		C287D59A19AEFDDD0026C91A /* ORGStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORGStore.h; sourceTree = "<group>"; };
@@ -228,6 +231,8 @@
 			children = (
 				C24D2CA819AD04A500D45972 /* ORGRootViewController.h */,
 				C24D2CA919AD04A500D45972 /* ORGRootViewController.m */,
+				C268373219B40AE1005AB618 /* ORGNewTaskTableViewController.h */,
+				C268373319B40AE1005AB618 /* ORGNewTaskTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -368,6 +373,7 @@
 				C24D2CAA19AD04A500D45972 /* ORGRootViewController.m in Sources */,
 				C24D2C4A19AC359400D45972 /* Organizr.xcdatamodeld in Sources */,
 				C287D59C19AEFDDD0026C91A /* ORGStore.m in Sources */,
+				C268373419B40AE1005AB618 /* ORGNewTaskTableViewController.m in Sources */,
 				C24D2CB519AD48B900D45972 /* ORGNewTaskTableViewCell.m in Sources */,
 				C253278519AECD0400B3AE75 /* ORGTableViewDataSource.m in Sources */,
 				C24D2C1B19AC34B500D45972 /* main.m in Sources */,
