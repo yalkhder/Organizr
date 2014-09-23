@@ -72,10 +72,7 @@
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
-    if ([segue.identifier isEqualToString:@"Add New Task"]) {
-        ORGNewTaskTableViewController *sourceViewController = [segue sourceViewController];
-        [Task insertTaskWithTitle:sourceViewController.titleTextField.text reminderDate:nil additionalNotes:nil parent:self.parent inManagedObjectContext:self.parent.managedObjectContext];
-    }
+    // Code when screen is popped back to controller
 }
 
 #pragma mark - Table view delegate
@@ -98,15 +95,22 @@
     taskCell.textField.text = task.title;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    id destinationViewController = [segue destinationViewController];
+    if ([destinationViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navController = destinationViewController;
+        id navRootViewController = [navController viewControllers].firstObject;
+        if ([navRootViewController isKindOfClass:[ORGNewTaskTableViewController class]]) {
+            ORGNewTaskTableViewController *newTaskTableViewController = navRootViewController;
+            newTaskTableViewController.parent = self.parent;
+        }
+    }
 }
-*/
+
 
 @end
