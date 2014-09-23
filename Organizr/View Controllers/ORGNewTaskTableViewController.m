@@ -12,6 +12,10 @@
 @interface ORGNewTaskTableViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButtonItem;
+@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
+@property (weak, nonatomic) IBOutlet UITextView *additionalNotesTextView;
+@property (weak, nonatomic) IBOutlet UISwitch *addReminderSwitch;
+
 
 @end
 
@@ -32,6 +36,7 @@
     
     self.doneBarButtonItem.enabled = self.titleTextField.text.length > 0;
     self.titleTextField.delegate = self;
+    [self.addReminderSwitch addTarget:self action:@selector(switchToggled:) forControlEvents:UIControlEventValueChanged];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -44,6 +49,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSIndexPath *)remindMeOnIndexPath
+{
+    return [NSIndexPath indexPathForRow:1 inSection:1];
+}
+
+- (void)switchToggled:(UISwitch *)sender {
+    // TODO: Show/Hide reminder cells.
 }
 
 #pragma mark - Text field delegate
@@ -63,21 +77,26 @@
     return YES;
 }
 
-//#pragma mark - Table view data source
+#pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 0;
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return [super numberOfSectionsInTableView:tableView];
+}
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//#warning Incomplete method implementation.
-//    // Return the number of rows in the section.
-//    return 0;
-//}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    int numberOfRows = [super tableView:tableView numberOfRowsInSection:section];
+    if (section == 1) {
+        numberOfRows--;
+        if (!self.addReminderSwitch.isOn) {
+            numberOfRows--;
+        }
+    }
+    return numberOfRows;
+}
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -128,6 +147,14 @@
 }
 */
 
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath isEqual:[self remindMeOnIndexPath]]) {
+        NSLog(@"Show dial");
+    }
+}
 
 #pragma mark - Navigation
 
@@ -135,7 +162,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString: @"Add New Task"]) {
-        [Task insertTaskWithTitle:self.titleTextField.text reminderDate:nil additionalNotes:nil parent:self.parent inManagedObjectContext:self.parent.managedObjectContext];
+        [Task insertTaskWithTitle:self.titleTextField.text reminderDate:nil additionalNotes:self.additionalNotesTextView.text parent:self.parent inManagedObjectContext:self.parent.managedObjectContext];
     }
 }
 

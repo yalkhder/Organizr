@@ -12,7 +12,6 @@
 
 @interface ORGNewTaskTableViewController : UITableViewController
 
-@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (strong, nonatomic) Task *parent;
 
 @end
