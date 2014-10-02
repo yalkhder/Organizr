@@ -42,6 +42,10 @@
 		C24D2CAA19AD04A500D45972 /* ORGRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CA919AD04A500D45972 /* ORGRootViewController.m */; };
 		C24D2CB119AD470A00D45972 /* ORGTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CB019AD470A00D45972 /* ORGTaskTableViewCell.m */; };
 		C24D2CB519AD48B900D45972 /* ORGNewTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24D2CB419AD48B900D45972 /* ORGNewTaskTableViewCell.m */; };
+		C24FCEBB19D2230400A69865 /* ORGTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24FCEBA19D2230400A69865 /* ORGTitleTableViewCell.m */; };
+		C24FCEBE19D225A000A69865 /* ORGReminderSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24FCEBD19D225A000A69865 /* ORGReminderSwitchTableViewCell.m */; };
+		C24FCEC119D2289F00A69865 /* ORGDatePickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24FCEC019D2289F00A69865 /* ORGDatePickerTableViewCell.m */; };
+		C24FCEC419D22B2900A69865 /* ORGAdditionalNotesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24FCEC319D22B2900A69865 /* ORGAdditionalNotesTableViewCell.m */; };
 		C253278519AECD0400B3AE75 /* ORGTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C253278419AECD0400B3AE75 /* ORGTableViewDataSource.m */; };
 		C268373419B40AE1005AB618 /* ORGNewTaskTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C268373319B40AE1005AB618 /* ORGNewTaskTableViewController.m */; };
 		C287D59919AEFA970026C91A /* ORGPersistentStack.m in Sources */ = {isa = PBXBuildFile; fileRef = C287D59819AEFA970026C91A /* ORGPersistentStack.m */; };
@@ -89,6 +93,14 @@
 		C24D2CB019AD470A00D45972 /* ORGTaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORGTaskTableViewCell.m; path = "Table View Cells/ORGTaskTableViewCell.m"; sourceTree = "<group>"; };
 		C24D2CB319AD48B900D45972 /* ORGNewTaskTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORGNewTaskTableViewCell.h; path = "Table View Cells/ORGNewTaskTableViewCell.h"; sourceTree = "<group>"; };
 		C24D2CB419AD48B900D45972 /* ORGNewTaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORGNewTaskTableViewCell.m; path = "Table View Cells/ORGNewTaskTableViewCell.m"; sourceTree = "<group>"; };
+		C24FCEB919D2230400A69865 /* ORGTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORGTitleTableViewCell.h; path = "Table View Cells/ORGTitleTableViewCell.h"; sourceTree = "<group>"; };
+		C24FCEBA19D2230400A69865 /* ORGTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORGTitleTableViewCell.m; path = "Table View Cells/ORGTitleTableViewCell.m"; sourceTree = "<group>"; };
+		C24FCEBC19D225A000A69865 /* ORGReminderSwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORGReminderSwitchTableViewCell.h; path = "Table View Cells/ORGReminderSwitchTableViewCell.h"; sourceTree = "<group>"; };
+		C24FCEBD19D225A000A69865 /* ORGReminderSwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORGReminderSwitchTableViewCell.m; path = "Table View Cells/ORGReminderSwitchTableViewCell.m"; sourceTree = "<group>"; };
+		C24FCEBF19D2289F00A69865 /* ORGDatePickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORGDatePickerTableViewCell.h; path = "Table View Cells/ORGDatePickerTableViewCell.h"; sourceTree = "<group>"; };
+		C24FCEC019D2289F00A69865 /* ORGDatePickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORGDatePickerTableViewCell.m; path = "Table View Cells/ORGDatePickerTableViewCell.m"; sourceTree = "<group>"; };
+		C24FCEC219D22B2900A69865 /* ORGAdditionalNotesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORGAdditionalNotesTableViewCell.h; path = "Table View Cells/ORGAdditionalNotesTableViewCell.h"; sourceTree = "<group>"; };
+		C24FCEC319D22B2900A69865 /* ORGAdditionalNotesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORGAdditionalNotesTableViewCell.m; path = "Table View Cells/ORGAdditionalNotesTableViewCell.m"; sourceTree = "<group>"; };
 		C253278319AECD0400B3AE75 /* ORGTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORGTableViewDataSource.h; sourceTree = "<group>"; };
 		C253278419AECD0400B3AE75 /* ORGTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORGTableViewDataSource.m; sourceTree = "<group>"; };
 		C268373219B40AE1005AB618 /* ORGNewTaskTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORGNewTaskTableViewController.h; path = "View Controllers/ORGNewTaskTableViewController.h"; sourceTree = "<group>"; };
@@ -244,6 +256,14 @@
 				C24D2CB019AD470A00D45972 /* ORGTaskTableViewCell.m */,
 				C24D2CB319AD48B900D45972 /* ORGNewTaskTableViewCell.h */,
 				C24D2CB419AD48B900D45972 /* ORGNewTaskTableViewCell.m */,
+				C24FCEB919D2230400A69865 /* ORGTitleTableViewCell.h */,
+				C24FCEBA19D2230400A69865 /* ORGTitleTableViewCell.m */,
+				C24FCEBC19D225A000A69865 /* ORGReminderSwitchTableViewCell.h */,
+				C24FCEBD19D225A000A69865 /* ORGReminderSwitchTableViewCell.m */,
+				C24FCEBF19D2289F00A69865 /* ORGDatePickerTableViewCell.h */,
+				C24FCEC019D2289F00A69865 /* ORGDatePickerTableViewCell.m */,
+				C24FCEC219D22B2900A69865 /* ORGAdditionalNotesTableViewCell.h */,
+				C24FCEC319D22B2900A69865 /* ORGAdditionalNotesTableViewCell.m */,
 			);
 			name = "Table View Cells";
 			sourceTree = "<group>";
@@ -370,11 +390,15 @@
 				C24D2CB119AD470A00D45972 /* ORGTaskTableViewCell.m in Sources */,
 				C24D2CA519AD01B600D45972 /* _Task.m in Sources */,
 				C287D59919AEFA970026C91A /* ORGPersistentStack.m in Sources */,
+				C24FCEBB19D2230400A69865 /* ORGTitleTableViewCell.m in Sources */,
 				C24D2CAA19AD04A500D45972 /* ORGRootViewController.m in Sources */,
 				C24D2C4A19AC359400D45972 /* Organizr.xcdatamodeld in Sources */,
 				C287D59C19AEFDDD0026C91A /* ORGStore.m in Sources */,
+				C24FCEC119D2289F00A69865 /* ORGDatePickerTableViewCell.m in Sources */,
 				C268373419B40AE1005AB618 /* ORGNewTaskTableViewController.m in Sources */,
+				C24FCEBE19D225A000A69865 /* ORGReminderSwitchTableViewCell.m in Sources */,
 				C24D2CB519AD48B900D45972 /* ORGNewTaskTableViewCell.m in Sources */,
+				C24FCEC419D22B2900A69865 /* ORGAdditionalNotesTableViewCell.m in Sources */,
 				C253278519AECD0400B3AE75 /* ORGTableViewDataSource.m in Sources */,
 				C24D2C1B19AC34B500D45972 /* main.m in Sources */,
 				C24D2CA619AD01B600D45972 /* Task.m in Sources */,

@@ -8,14 +8,21 @@
 
 #import "ORGNewTaskTableViewController.h"
 #import "Task.h"
+#import "ORGReminderSwitchTableViewCell.h"
+#import "ORGTitleTableViewCell.h"
+#import "ORGDatePickerTableViewCell.h"
+#import "ORGAdditionalNotesTableViewCell.h"
 
-@interface ORGNewTaskTableViewController () <UITextFieldDelegate>
+@interface ORGNewTaskTableViewController () <UITextFieldDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButtonItem;
-@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
-@property (weak, nonatomic) IBOutlet UITextView *additionalNotesTextView;
-@property (weak, nonatomic) IBOutlet UISwitch *addReminderSwitch;
-
+@property (weak, nonatomic) UISwitch *reminderSwitch;
+@property (weak, nonatomic) UIDatePicker *reminderDatePicker;
+@property (weak, nonatomic) UILabel *reminderDateLabel;
+@property (weak, nonatomic) UITextField *titleTextField;
+@property (weak, nonatomic) UITextView *additionalNotesTextView;
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
+@property (weak, nonatomic) UIView *firstResponder;
 
 @end
 
@@ -34,15 +41,14 @@
 {
     [super viewDidLoad];
     
-    self.doneBarButtonItem.enabled = self.titleTextField.text.length > 0;
-    self.titleTextField.delegate = self;
-    [self.addReminderSwitch addTarget:self action:@selector(switchToggled:) forControlEvents:UIControlEventValueChanged];
+//    self.doneBarButtonItem.enabled = self.titleTextField.text.length > 0;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    self.dateFormatter.dateStyle = NSDateFormatterShortStyle;
+    self.dateFormatter.timeStyle = NSDateFormatterShortStyle;
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,16 +57,37 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSIndexPath *)remindMeOnIndexPath
+- (void)switchToggled:(UISwitch *)sender
 {
-    return [NSIndexPath indexPathForRow:1 inSection:1];
+    // TODO: Show/Hide reminder cells.
+    NSIndexPath *dateTitleIndexPath = [NSIndexPath indexPathForRow:1 inSection:1];
+    NSIndexPath *datePickerIndexPath = [NSIndexPath indexPathForRow:2 inSection:1];
+    if (sender.isOn) {
+        [self.tableView insertRowsAtIndexPaths:@[dateTitleIndexPath, datePickerIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else {
+        //TODO:Make it look prettier
+        [self.tableView deleteRowsAtIndexPaths:@[dateTitleIndexPath, datePickerIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.reminderDatePicker setDate:[NSDate date] animated:NO];
+    }
 }
 
-- (void)switchToggled:(UISwitch *)sender {
-    // TODO: Show/Hide reminder cells.
+- (void)datePickerValueChanged:(UIDatePicker *)sender
+{
+    self.reminderDateLabel.text = [self.dateFormatter stringFromDate:sender.date];
 }
 
 #pragma mark - Text field delegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.firstResponder = textField;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.firstResponder = nil;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -77,83 +104,98 @@
     return YES;
 }
 
+#pragma mark - Text view delegate
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    self.firstResponder = textView;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    self.firstResponder = nil;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [super numberOfSectionsInTableView:tableView];
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    int numberOfRows = [super tableView:tableView numberOfRowsInSection:section];
-    if (section == 1) {
-        numberOfRows--;
-        if (!self.addReminderSwitch.isOn) {
-            numberOfRows--;
-        }
+    if (section == 1 && self.reminderSwitch.isOn) {
+        return 3;
     }
-    return numberOfRows;
+    return 1;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+    switch (indexPath.section) {
+        case 0: {
+            ORGTitleTableViewCell *titleCell = [tableView dequeueReusableCellWithIdentifier:@"Title Cell" forIndexPath:indexPath];
+            titleCell.titleTextField.delegate = self;
+            self.titleTextField = titleCell.titleTextField;
+            self.doneBarButtonItem.enabled = self.titleTextField.text.length > 0;
+            return titleCell;
+        }
+        case 1: {
+            switch (indexPath.row) {
+                case 0: {
+                    ORGReminderSwitchTableViewCell *switchCell = [tableView dequeueReusableCellWithIdentifier:@"Reminder Switch Cell" forIndexPath:indexPath];
+                    self.reminderSwitch = switchCell.addReminderSwitch;
+                    [switchCell.addReminderSwitch addTarget:self action:@selector(switchToggled:) forControlEvents:UIControlEventValueChanged];
+                     return switchCell;
+                }
+                case 1: {
+                    UITableViewCell *reminderDetailCell = [tableView dequeueReusableCellWithIdentifier:@"Reminder Date Cell" forIndexPath:indexPath];
+                    self.reminderDateLabel = reminderDetailCell.detailTextLabel;
+                    return reminderDetailCell;
+                }
+                case 2: {
+                    ORGDatePickerTableViewCell *datePickerCell = [tableView dequeueReusableCellWithIdentifier:@"Reminder Date Picker Cell" forIndexPath:indexPath];
+                    self.reminderDatePicker = datePickerCell.reminderDatePicker;
+                    [self.reminderDatePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
+                    self.reminderDateLabel.text = [self.dateFormatter stringFromDate:self.reminderDatePicker.date];
+                    return datePickerCell;
+                }
+                default:
+                    return nil;
+            }
+        }
+        case 2: {
+            ORGAdditionalNotesTableViewCell *additionalNotesCell = [tableView dequeueReusableCellWithIdentifier:@"Additional Notes Cell" forIndexPath:indexPath];
+            self.additionalNotesTextView = additionalNotesCell.notesTextView;
+            self.additionalNotesTextView.delegate = self;
+            return additionalNotesCell;
+        }
+        default:
+            return nil;
+    }
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([indexPath isEqual:[self remindMeOnIndexPath]]) {
-        NSLog(@"Show dial");
+    //TODO: Make those not hardcoded
+    if (indexPath.section == 1 && indexPath.row == 2) {
+        return 162;
     }
+    if (indexPath.section == 2) {
+        return 150;
+    }
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+
+#pragma mark - Scroll view delegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.firstResponder resignFirstResponder];
 }
 
 #pragma mark - Navigation
@@ -162,7 +204,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString: @"Add New Task"]) {
-        [Task insertTaskWithTitle:self.titleTextField.text reminderDate:nil additionalNotes:self.additionalNotesTextView.text parent:self.parent inManagedObjectContext:self.parent.managedObjectContext];
+        NSDate *reminderDate;
+        if (self.reminderSwitch.isOn) {
+            reminderDate = self.reminderDatePicker.date;
+        }
+        [Task insertTaskWithTitle:self.titleTextField.text reminderDate:reminderDate additionalNotes:self.additionalNotesTextView.text parent:self.parent inManagedObjectContext:self.parent.managedObjectContext];
     }
 }
 

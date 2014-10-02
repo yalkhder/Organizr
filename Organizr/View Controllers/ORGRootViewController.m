@@ -33,7 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setupFetchedResultsController];
+    [self setupDataSource];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -61,7 +61,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setupFetchedResultsController
+- (void)setupDataSource
 {
     self.dataSource = [[ORGTableViewDataSource alloc] initWithTableView:self.tableView];
     self.dataSource.fetchedResultsController = self.parent.childrenFetchedResultsController;
