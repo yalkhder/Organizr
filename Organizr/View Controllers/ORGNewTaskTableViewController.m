@@ -46,9 +46,7 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    self.dateFormatter = [[NSDateFormatter alloc] init];
-    self.dateFormatter.dateStyle = NSDateFormatterShortStyle;
-    self.dateFormatter.timeStyle = NSDateFormatterShortStyle;
+    [self setupDateFormatter];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,9 +55,31 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setupDateFormatter
+{
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    self.dateFormatter.dateStyle = NSDateFormatterShortStyle;
+    self.dateFormatter.timeStyle = NSDateFormatterShortStyle;
+}
+
+- (void)scheduleNotificationForTask:(Task *)task
+{
+    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    if (!localNotification || !task.reminderDate) {
+        return;
+    }
+    localNotification.fireDate = task.reminderDate;
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.alertBody = task.title;
+    localNotification.alertAction = @"view";
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    localNotification.applicationIconBadgeNumber++;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
+
 - (void)switchToggled:(UISwitch *)sender
 {
-    // TODO: Show/Hide reminder cells.
     NSIndexPath *dateTitleIndexPath = [NSIndexPath indexPathForRow:1 inSection:1];
     NSIndexPath *datePickerIndexPath = [NSIndexPath indexPathForRow:2 inSection:1];
     if (sender.isOn) {
@@ -208,7 +228,10 @@
         if (self.reminderSwitch.isOn) {
             reminderDate = self.reminderDatePicker.date;
         }
-        [Task insertTaskWithTitle:self.titleTextField.text reminderDate:reminderDate additionalNotes:self.additionalNotesTextView.text parent:self.parent inManagedObjectContext:self.parent.managedObjectContext];
+        Task *task = [Task insertTaskWithTitle:self.titleTextField.text reminderDate:reminderDate additionalNotes:self.additionalNotesTextView.text parent:self.parent inManagedObjectContext:self.parent.managedObjectContext];
+        if (reminderDate) {
+            [self scheduleNotificationForTask:task];
+        }
     }
 }
 

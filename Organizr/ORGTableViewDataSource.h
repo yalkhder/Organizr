@@ -11,10 +11,11 @@
 @protocol ORGTableViewDataSourceDelegate <NSObject>
 
 - (void)configureCell:(id)cell withObject:(id)object;
+- (CGFloat)heightForRowWithObject:(id)object atIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
-@interface ORGTableViewDataSource : NSObject <UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface ORGTableViewDataSource : NSObject <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
 @property (copy, nonatomic) NSString *cellIdentifier;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;

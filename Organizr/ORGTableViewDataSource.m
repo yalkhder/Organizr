@@ -22,6 +22,7 @@
     if (self) {
         self.tableView = tableView;
         self.tableView.dataSource = self;
+        self.tableView.delegate = self;
     }
     
     return self;
@@ -75,6 +76,14 @@
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
+}
+
+#pragma mark - Table view delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    id object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    return [self.delegate heightForRowWithObject:object atIndexPath:indexPath];
 }
 
 #pragma mark - Fetched results controller delegate

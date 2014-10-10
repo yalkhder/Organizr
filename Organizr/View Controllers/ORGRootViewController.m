@@ -16,6 +16,7 @@
 @interface ORGRootViewController () <ORGTableViewDataSourceDelegate>
 
 @property (strong, nonatomic) ORGTableViewDataSource *dataSource;
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
 @end
 
@@ -34,6 +35,7 @@
 {
     [super viewDidLoad];
     [self setupDataSource];
+    [self setupDateFormatter];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -70,21 +72,16 @@
     
 }
 
+- (void)setupDateFormatter
+{
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    self.dateFormatter.dateStyle = NSDateFormatterLongStyle;
+    self.dateFormatter.timeStyle = NSDateFormatterShortStyle;
+}
+
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
     // Code when screen is popped back to controller
-}
-
-#pragma mark - Table view delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    ORGNewTaskTableViewCell *cell = (ORGNewTaskTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    [cell.textField becomeFirstResponder];
-}
-
-- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"will start editing");
 }
 
 #pragma mark - Table view data source delegate
@@ -92,9 +89,20 @@
 {
     ORGTaskTableViewCell *taskCell = cell;
     Task *task = object;
-    taskCell.textField.text = task.title;
+    taskCell.titleLabel.text = task.title;
+    [taskCell.titleLabel sizeToFit];
+    taskCell.reminderDateLabel.text = [self.dateFormatter stringFromDate:task.reminderDate];
+    [taskCell.reminderDateLabel sizeToFit];
 }
 
+- (CGFloat)heightForRowWithObject:(id)object atIndexPath:(NSIndexPath *)indexPath
+{
+    Task *task = object;
+    if (task.reminderDate) {
+        return 60;
+    }
+    return [super tableView:self.tableView heightForRowAtIndexPath:indexPath];
+}
 
 #pragma mark - Navigation
 
