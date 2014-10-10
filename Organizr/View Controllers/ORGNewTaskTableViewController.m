@@ -64,6 +64,7 @@
 
 - (void)scheduleNotificationForTask:(Task *)task
 {
+    //TODO: Refactor into its own class
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
     if (!localNotification || !task.reminderDate) {
         return;
