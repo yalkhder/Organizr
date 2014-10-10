@@ -12,6 +12,7 @@
 
 - (void)configureCell:(id)cell withObject:(id)object;
 - (CGFloat)heightForRowWithObject:(id)object atIndexPath:(NSIndexPath *)indexPath;
+- (void)deleteObject:(id)object;
 
 @end
 
