@@ -108,20 +108,7 @@
 {
     Task *task = object;
     [task.managedObjectContext deleteObject:task];
-    [self cancelLocalNotificationForTask:task];
-}
-
-- (void)cancelLocalNotificationForTask:(Task *)task
-{
-    //TODO: Refactor into its own class
-    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    NSUInteger notificationIndex = [localNotifications indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-        UILocalNotification *notification = obj;
-        return ([notification.alertBody isEqualToString:task.title] && [notification.fireDate isEqualToDate:task.reminderDate]);
-    }];
-    if (notificationIndex != NSNotFound) {
-        [[UIApplication sharedApplication] cancelLocalNotification:[localNotifications objectAtIndex:notificationIndex]];
-    }
+    [task cancelLocalNotification];
 }
 
 #pragma mark - Navigation

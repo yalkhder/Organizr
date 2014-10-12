@@ -62,23 +62,6 @@
     self.dateFormatter.timeStyle = NSDateFormatterShortStyle;
 }
 
-- (void)scheduleNotificationForTask:(Task *)task
-{
-    //TODO: Refactor into its own class
-    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-    if (!localNotification || !task.reminderDate) {
-        return;
-    }
-    localNotification.fireDate = task.reminderDate;
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.alertBody = task.title;
-    localNotification.alertAction = @"view";
-    localNotification.soundName = UILocalNotificationDefaultSoundName;
-    localNotification.applicationIconBadgeNumber++;
-    
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-}
-
 - (void)switchToggled:(UISwitch *)sender
 {
     NSIndexPath *dateTitleIndexPath = [NSIndexPath indexPathForRow:1 inSection:1];
@@ -141,7 +124,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 3;
 }
 
@@ -231,7 +213,7 @@
         }
         Task *task = [Task insertTaskWithTitle:self.titleTextField.text reminderDate:reminderDate additionalNotes:self.additionalNotesTextView.text parent:self.parent inManagedObjectContext:self.parent.managedObjectContext];
         if (reminderDate) {
-            [self scheduleNotificationForTask:task];
+            [task scheduleLocalNotification];
         }
     }
 }
